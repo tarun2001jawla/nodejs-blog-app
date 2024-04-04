@@ -88,4 +88,19 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+router.get('/logout', (req, res) => {
+    try {
+        // Clear the token cookie
+        res.clearCookie('token');
+
+        // Redirect to the homepage after logout
+        res.redirect('/');
+    } catch (error) {
+        // Handle any errors that occur during logout
+        console.error('Error during logout:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 module.exports = router;

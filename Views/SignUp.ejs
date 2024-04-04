@@ -1,0 +1,71 @@
+<!-- signUp.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>NodeBlog - Sign Up</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form action="/user/signup" method="POST">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <small class="form-text text-muted">We will never share your email.</small>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required required minlength="6">
+            <small class="form-text text-muted">Minimum length: 6 characters</small>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <%- include('./partials/scripts') %>    
+</body>
+</html>
