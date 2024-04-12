@@ -13,7 +13,7 @@ function authenticationMiddleware(cookieName) {
         try {
             const userToken = validateToken(tokenCookieValue);
             req.user = userToken;
-            console.log('User authenticated:', userToken);
+            
             return next(); // Move to the next middleware or route handler
         } catch (error) {
             console.error('Error validating token:', error);

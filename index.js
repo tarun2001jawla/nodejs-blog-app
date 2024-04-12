@@ -2,7 +2,10 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const userRoutes = require('./Routes/user');
+const userRoute = require('./Routes/user');
+const blogRoute = require('./Routes/blog');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const mongoose = require('mongoose');
 const { authenticationMiddleware } = require('./middlewares/authMiddleware');
@@ -23,6 +26,8 @@ app.set('views', path.resolve('./Views'));
 // Middleware for parsing JSON and urlencoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(upload.single('coverImage'));
+
 
 //middleware for parsing cookies
 app.use(cookieParser());
@@ -40,8 +45,8 @@ app.get('/', (req, res) => {
 });
 
 // User routes
-app.use('/user', userRoutes)
-
+app.use('/user', userRoute);
+app.use('/blog', blogRoute);
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
